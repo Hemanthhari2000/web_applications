@@ -1,0 +1,44 @@
+<html>
+<body>
+<script type="text/javascript">
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","users.xml",true);
+	xmlhttp.send();
+	var xmlDoc = xmlhttp.responseXML;
+	document.write("<html><table border=1><tr><th>User Id</th><th>Uname</th><th>Age</th></tr>");
+	for(var i=0;i<10;i++)
+	{
+		var uid1=xmlDoc.getElementsByTagName("userno")[i].childNodes[0].nodeValue;
+		var uname = xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
+		var uage = xmlDoc.getElementsByTagName("age")[i].childNodes[0].nodeValue;
+		document.write("<tr><td>"+uid1+"</td><td>"+uname+"</td><td>"+uage+"</td></tr>");
+	}
+	document.write("</table></html>");
+</script>
+<script type="text/javascript">
+function display()
+{
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","users.xml", true);
+	xmlhttp.send()
+	var xmlDoc = xmlhttp.responseXML;
+	var uid = prompt("Enter the userid");
+	var x = xmlDoc.getElementsByTagName("userdata");
+	for(var i=0;i<10;i++)
+	{
+		uid1=xmlDoc.getElementsByTagName("userno")[i].childNodes[0].nodeValue;
+		if(uid===uid1)
+		{
+			var uname = xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
+			var uage = xmlDoc.getElementsByTagName("age")[i].childNodes[0].nodeValue;
+			alert("User id:"+uid +"\n"+"User Name:"+uname+"\n"+"Age:"+uage);
+			break;
+		}
+	}	
+}
+</script>
+<p><button onclick="javascript:display()">Submit</button></p> 
+
+
+</body>
+</html>
